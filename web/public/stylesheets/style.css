@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+:root {
+	--color-primario: rgb(255, 255, 0);
+	--color-secundario: #000000;
+	--contraste-primario: #ffffff;
+	--margin-height: calc(100vh - 3rem);
+}
+
+html{
+	font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+*, *::before, *::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	align-items: baseline;
+}
+
+input {
+	margin-top: 12px;
+	position: relative;
+	z-index: 1;
+}
+
+label{
+	transition: font-size 250ms;
+}
+
+input:not([type=checkbox]), button {
+	border: none;
+	outline: none;
+	background: none;
+	width: 100%;
+	font-size: 1rem;
+}
+
+input:focus:not([type=checkbox]):not([type=radio]) + label {
+	position: absolute;
+	top: 5px;
+	font-size: 0.7rem;
+	transition: font-size 250ms;
+}
+
+input:not([value=""]):not([type=checkbox]):not([type=radio]) + label {
+	position: absolute;
+	top: 5px;
+	font-size: 0.7rem;
+	transition: font-size 250ms;
+}
+
+input:not([type=checkbox]):not([type=radio]) + label {
+	position: absolute;
+	z-index: 0;
+}
+
+button {
+	background-color: var(--color-primario);
+	padding: 0.5rem 0.5rem;
+	margin: 0.25rem 0;
+	color: var(--contraste-secundario);
+	border-radius: 7px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+select {
+	width: 100%;
+	padding: 0.5rem 0.5rem;
+	border: none;
+	background-color: var(--contraste-primario);
+}
+
+.contenedor{
+	display: flex;
+	flex-flow: column;
+	min-height: var(--margin-height);
+	min-width: calc(100vw - 3rem);
+	position: absolute;
+}
+
+.fila {
+	position: relative;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+	min-height: 5vh;
+	margin-top: 0.5vh;
+	margin-bottom: 0.5vh;
+}
+
+.columna {
+	display: flex;
+	flex-flow: column;
+	position: relative;
+	flex: 1 1 auto;
+	border-radius: 10px;
+	padding: 1vh 1vw;
+	margin: 1rem;
+}
+
+.formulario .columna {
+	background-color: var(--contraste-primario);
+	justify-content: flex-end;
+	position: relative;
+}
+
+.formulario .columna.de-texto::after {
+	content: "";
+	width: 100%;
+	height: 1px;
+	margin-top: 10px;
+	background-color: var(--color-secundario);
+}
+
+.columna.izquierda{
+	background-color: var(--color-primario);
+	max-width: 25%;
+	height: var(--margin-height);
+	justify-content: center;
+    align-items: center;
+}
+
+.columna.derecha{
+	height: var(--margin-height);
+	position: relative;
+}
+
+.calendarios {
+	display: flex;
+	max-width: 100%;
+	max-height: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: absolute;
+}
+
+.mes{
+	margin: .5rem;
+}
+
+.encabezado{
+	display: flex;
+	justify-content: center;
+}
+
+.diasNombre {
+	display: flex;
+	margin: 0;
+	padding: 10px 0;
+	background-color:#ddd;
+}
+
+.diasNombre li {
+	display: inline-block;
+	width: 13.6%;
+	color: #666;
+	text-align: center;
+	margin: .2rem;
+}
+
+.dias{
+	padding: 10px 0;
+	background: #eee;
+	margin: 0;
+	min-height: 15.9vh;
+}
+
+.dias li {
+	list-style-type: none;
+	display: inline-block;
+	width: 13.6%;
+	text-align: center;
+	margin-bottom: 5px;
+	font-size:12px;
+	color: #777;
+}
