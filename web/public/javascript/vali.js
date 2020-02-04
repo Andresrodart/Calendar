@@ -1,4 +1,4 @@
-let meses = ["", "Enero", "Febrero", "Marzo","Abril","Mayo", "Junio","Julio","Agosto","Septiembre", "Octubre","Noviembre","Diciembre"];
+let meses = ["Enero", "Febrero", "Marzo","Abril","Mayo", "Junio","Julio","Agosto","Septiembre", "Octubre","Noviembre","Diciembre"];
 
 function formatoDia(date){
 	if (date.value.search(/(1[0-2]|0[1-9])-[0-9]{4}/) == -1){
@@ -22,7 +22,7 @@ function enviar() {
             alert("mes de inicio mayor a mes final en un mismo año");
         }else{
             var xmlhttp = new XMLHttpRequest();
-            creacionDeCalendario(mesInicio, mesFin, anoInicio, anoFin);
+            creacionDeCalendario(mesInicio - 1, mesFin - 1, anoInicio, anoFin);
             xmlhttp.onreadystatechange = function() {};
             xmlhttp.open("POST", "acces_log.php?q=" + document.getElementById("inicio").value + "+---+" + document.getElementById("fin").value, true);
             xmlhttp.send();
@@ -36,7 +36,6 @@ function creacionDeCalendario(mesInicio, mesFin, anoInicio, anoFin){
 	let col = document.createElement("div");
 	let j = 0, mesXcol =  Math.round((((anoFin - anoInicio) * 12 ) - mesInicio + mesFin + 1) / columnas), aux = 1;
 	col.classList.add("columnas");
-	console.log(mesXcol);
 	while (anoInicio <= anoFin) {
 		while (mesInicio < 13) {
 			if((anoInicio == anoFin && mesInicio > mesFin)){
@@ -44,18 +43,16 @@ function creacionDeCalendario(mesInicio, mesFin, anoInicio, anoFin){
 				mesFin = 1;
 				break;
 			}
-			let fechaInicio = new Date(anoInicio, mesInicio, 1);
-			fechaInicio = fechaInicio.getDay();
+			let nDias = new Date(anoInicio, mesInicio + 1, 0).getDate();
+			let fechaInicio = new Date(anoInicio, mesInicio, 1).getDay();
 
 			let fechas = "";
 			let node = document.createElement("div");
 			let divDias = document.createElement("ul");
 			let encabezado = meses[mesInicio] + " " + anoInicio;
 			let divEncabezado = document.createElement("div");
-			let nDias = (meses[mesInicio] === "Febrero")? 28 + fechaInicio : (mesInicio % 2 == 0)? 31 + fechaInicio: 30 + fechaInicio;
-			
-			
-			for (let i = 0; i < nDias; i++) {
+			console.log(nDias)
+			for (let i = 0; i < nDias + fechaInicio; i++) {
 				if (i < fechaInicio)
 					fechas += "<li></li>";
 				else
